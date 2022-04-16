@@ -137,3 +137,9 @@ dmypy.json
 # system ignore
 .DS_Store
 Thumbs.db
+
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
