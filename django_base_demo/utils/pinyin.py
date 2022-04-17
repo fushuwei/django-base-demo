@@ -116,7 +116,7 @@ class Pinyin:
 
 if __name__ == '__main__':
     """
-    常用场景测试，详情参考文档：https://pypi.org/project/pypinyin/
+    测试常用场景，详情参考文档：https://pypi.org/project/pypinyin/
     """
 
     # 自定义拼音库，用来修正结果，比如：换行（huan hang) 默认转成：huan xing
