@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'django_base_demo.utils.exception.exception_handler',
+    'EXCEPTION_HANDLER': 'django_base_demo.core.exception.exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework.authentication.BasicAuthentication',   # 基本认证
         'rest_framework.authentication.SessionAuthentication',  # session认证
@@ -136,3 +136,50 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 日志配置
+# https://www.cnblogs.com/zyy6/articles/16056164.html
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(lineno)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(module)s %(lineno)d %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/django_base_demo.log"),
+            'maxBytes': 100 * 1024 * 1024,  # 设置日志文件最大100M
+            'backupCount': 10,  # 设置保留最近的10个日志文件，每个文件最大100M
+            'formatter': 'verbose',
+            'encoding': 'utf-8',  # 设置默认编码，否则打印出来汉字乱码
+        },
+    },
+    'loggers': {
+        'django': {  # 定义名称叫django的日志器，与Django框架中的日志器同名
+            'handlers': ['console', 'file'],
+            'propagate': True,
+        },
+    }
+}
