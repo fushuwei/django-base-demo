@@ -101,24 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'django_base_demo.core.exception.exception_handler',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.BasicAuthentication',   # 基本认证
-        'rest_framework.authentication.SessionAuthentication',  # session认证
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',  # 权限验证
-    ),
-    'DEFAULT_RENDERER_CLASSES': (  # 默认响应渲染类
-        'rest_framework.renderers.JSONRenderer',  # json渲染器
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # 分页器
-    # 'DEFAULT_PAGINATION_CLASS': 'data_big_screen.lib.utility.pagination.ResultsSetPagination',  # 分页器
-    'PAGE_SIZE': 10,
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -136,6 +118,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# REST_FRAMEWORK
+# https://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'django_base_demo.core.exception.exception_handler',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',   # 基本认证
+        'rest_framework.authentication.SessionAuthentication',  # session认证
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated',  # 权限验证
+    ),
+    'DEFAULT_RENDERER_CLASSES': (  # 默认响应渲染类
+        'rest_framework.renderers.JSONRenderer',  # json渲染器
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # 分页器
+    # 'DEFAULT_PAGINATION_CLASS': 'data_big_screen.lib.utility.pagination.ResultsSetPagination',  # 分页器
+    'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}
 
 # 日志配置
 # https://www.cnblogs.com/zyy6/articles/16056164.html
@@ -180,6 +183,7 @@ LOGGING = {
         'django': {  # 定义名称叫django的日志器，与Django框架中的日志器同名
             'handlers': ['console', 'file'],
             'propagate': True,
+            'level': 'INFO',
         },
     }
 }
