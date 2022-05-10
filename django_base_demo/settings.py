@@ -29,12 +29,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_base_demo.apps.user',
 ]
 
 MIDDLEWARE = [
@@ -133,9 +135,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (  # 默认响应渲染类
         'rest_framework.renderers.JSONRenderer',  # json渲染器
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # 分页器
-    # 'DEFAULT_PAGINATION_CLASS': 'data_big_screen.lib.utility.pagination.ResultsSetPagination',  # 分页器
-    'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'django_base_demo.core.pagination.BasePageNumberPagination',  # 分页器
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 

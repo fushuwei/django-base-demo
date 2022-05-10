@@ -2,10 +2,11 @@ create database if not exists `test` default character set utf8mb4 collate utf8m
 
 use `test`;
 
-CREATE TABLE IF NOT EXISTS `t_student` (
+CREATE TABLE IF NOT EXISTS `t_user` (
   `id` varchar(50) NOT NULL COMMENT '唯一主键',
   `name` varchar(255) DEFAULT NULL COMMENT '姓名',
-  `age` varchar(255) DEFAULT NULL COMMENT '年龄',
+  `gender` varchar(255) DEFAULT NULL COMMENT '性别',
+  `age` int(11) DEFAULT NULL COMMENT '年龄',
   `remark` text DEFAULT NULL COMMENT '备注，描述信息',
   `create_by` varchar(50) DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',

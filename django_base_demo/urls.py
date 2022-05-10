@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': 'static'}),
 
     # 自定义模块路由
-    url('demo/', include('django_base_demo.apps.demo.urls')),
+    url('user/', include('django_base_demo.apps.user.urls')),
 ]

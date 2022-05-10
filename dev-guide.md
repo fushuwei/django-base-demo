@@ -40,11 +40,3 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```shell
 https://docs.djangoproject.com/zh-hans/2.2/howto/deployment/wsgi/
 ```
-
-# 待整理
-
-```shell
-https://www.django-rest-framework.org/api-guide/settings/
-
-http://c.biancheng.net/django/
-```

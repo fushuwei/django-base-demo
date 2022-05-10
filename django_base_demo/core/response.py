@@ -7,13 +7,13 @@ class Response:
     """
 
     # 请求状态码
-    CODE_SUCCESS = 1000  # 成功
-    CODE_MESSAGE = 2000  # 信息
-    CODE_CONFIRM = 3000  # 确认
-    CODE_LOADING = 4000  # 进度
-    CODE_WARNING = 6000  # 警告
-    CODE_PERMISSION_DENIED = 7000  # 无权限
-    CODE_FAILURE = 9000  # 失败
+    CODE_SUCCESS = 10000  # 成功
+    CODE_MESSAGE = 20000  # 信息
+    CODE_CONFIRM = 30000  # 确认
+    CODE_LOADING = 40000  # 进度
+    CODE_WARNING = 60000  # 警告
+    CODE_PERMISSION_DENIED = 70000  # 无权限
+    CODE_FAILURE = 99999  # 失败
 
     @staticmethod
     def success(data=None, message='', description='服务器处理请求成功'):

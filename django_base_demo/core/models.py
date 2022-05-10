@@ -34,7 +34,7 @@ class BaseModel(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, null=True)  # 创建时间
     update_by = models.CharField(max_length=255, blank=True, null=True)  # 最后修改人
     update_time = models.DateTimeField(auto_now=True, null=True)  # 最后修改时间
-    is_deleted = models.BooleanField(default=False, choices=IS_DELETED)  # 是否删除标记
+    is_deleted = models.BooleanField(choices=IS_DELETED, default=False)  # 是否删除标记
 
     class Meta:
         abstract = True  # 抽象类，数据库迁移时不会创建实体表
