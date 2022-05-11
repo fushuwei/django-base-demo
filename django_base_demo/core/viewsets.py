@@ -8,10 +8,19 @@ class BaseViewSet(GenericViewSet):
     ViewSet基础类，所有视图类都要继承该类
     """
 
-    # 是否在分页器中根据配置的serializer_class自动序列化，默认False
+    # 是否在分页器中根据设置的serializer_class自动序列化，默认False
     auto_serializer = False
 
     def list(self, request, *args, **kwargs):
+        """
+        查询列表
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         queryset = self.filter_queryset(self.get_queryset())
 
         page = self.paginate_queryset(queryset)
@@ -23,6 +32,15 @@ class BaseViewSet(GenericViewSet):
         return Response.success(serializer.data, message='请求成功')
 
     def create(self, request, *args, **kwargs):
+        """
+        创建
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -30,11 +48,29 @@ class BaseViewSet(GenericViewSet):
         return Response.success(serializer.data, message='保存成功')
 
     def retrieve(self, request, *args, **kwargs):
+        """
+        查询单个数据
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response.success(serializer.data, message='请求成功')
 
     def update(self, request, *args, **kwargs):
+        """
+        修改
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
@@ -49,6 +85,15 @@ class BaseViewSet(GenericViewSet):
         return Response.success(serializer.data, message='更新成功')
 
     def destroy(self, request, *args, **kwargs):
+        """
+        删除
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response.success(message='删除成功')

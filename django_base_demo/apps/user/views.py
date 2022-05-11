@@ -15,8 +15,6 @@ class UserViewSet(BaseViewSet):
     用户视图集
     """
 
-    serializer_class = UserSerializer
-
     def list(self, request, *args, **kwargs):
         """
         查询用户列表
@@ -56,6 +54,7 @@ class UserViewSet(BaseViewSet):
         重点代码如下：
 
             # 设置在分页器中进行序列化
+            self.serializer_class = UserSerializer
             self.auto_serializer = True
             # 封装分页，从查询结果集中取出当前页数据
             data = self.paginate_queryset(query)
@@ -75,6 +74,7 @@ class UserViewSet(BaseViewSet):
             query = query.filter(name__icontains=search)
 
         # 设置在分页器中进行序列化
+        self.serializer_class = UserSerializer
         self.auto_serializer = True
         # 封装分页，从查询结果集中取出当前页数据
         data = self.paginate_queryset(query)

@@ -17,7 +17,7 @@ class ExceptionMiddleware(MiddlewareMixin):
 
     def process_exception(self, request, exception):
         """
-        异常处理
+        全局异常处理
 
         :param request:
         :param exception:
@@ -41,7 +41,9 @@ class ExceptionMiddleware(MiddlewareMixin):
 
 def exception_handler(exc, context):
     """
-    DRF框架全局异常处理，用于拦截 APIView 及其子类抛出的 APIException 类型的异常
+    DRF框架异常处理器，用于拦截 APIView 及其子类抛出的 APIException 类型的异常
+
+    如果不在 settings 中配置该异常处理器，则异常会继续向上抛，直到被 ExceptionMiddleware 捕获，因此该异常处理器不是必须的
 
     :param exc: 异常
     :param context: 抛出异常的上下文
