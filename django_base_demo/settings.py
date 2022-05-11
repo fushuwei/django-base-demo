@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_base_demo.middleware.exception.ExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'django_base_demo.urls'
@@ -124,7 +125,7 @@ STATIC_URL = '/static/'
 # https://www.django-rest-framework.org/
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'django_base_demo.core.exception.exception_handler',
+    'EXCEPTION_HANDLER': 'django_base_demo.middleware.exception.exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework.authentication.BasicAuthentication',   # 基本认证
         'rest_framework.authentication.SessionAuthentication',  # session认证
