@@ -155,7 +155,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/django_base_demo.log"),
+            'filename': os.path.join(BASE_DIR, 'logs/django_base_demo.log'),
             'maxBytes': 100 * 1024 * 1024,  # 设置日志文件最大100M
             'backupCount': 10,  # 设置保留最近的10个日志文件，每个文件最大100M
             'formatter': 'verbose',
