@@ -29,12 +29,12 @@ class BaseModel(models.Model):
         (False, '否')
     )
 
-    id = models.CharField(max_length=50, primary_key=True, default=UUID.uuid, null=False)  # 唯一主键
-    create_by = models.CharField(max_length=255, blank=True, null=True)  # 创建人
-    create_time = models.DateTimeField(auto_now_add=True, null=True)  # 创建时间
-    update_by = models.CharField(max_length=255, blank=True, null=True)  # 最后修改人
-    update_time = models.DateTimeField(auto_now=True, null=True)  # 最后修改时间
-    is_deleted = models.BooleanField(choices=IS_DELETED, default=False)  # 是否删除标记
+    id = models.CharField(max_length=50, primary_key=True, default=UUID.uuid, null=False, verbose_name='唯一Id')
+    create_by = models.CharField(max_length=255, blank=True, null=True, verbose_name='创建人')
+    create_time = models.DateTimeField(auto_now_add=True, null=True, verbose_name='创建时间')
+    update_by = models.CharField(max_length=255, blank=True, null=True, verbose_name='最后修改人')
+    update_time = models.DateTimeField(auto_now=True, null=True, verbose_name='最后修改时间')
+    is_deleted = models.BooleanField(choices=IS_DELETED, default=False, verbose_name='是否删除标记')
 
     class Meta:
         abstract = True  # 抽象类，数据库迁移时不会创建实体表
