@@ -15,6 +15,9 @@ class UserViewSet(BaseViewSet):
     用户视图集
     """
 
+    queryset = User.objects.filter(is_deleted=False)
+    serializer_class = UserSerializer
+
     def list(self, request, *args, **kwargs):
         """
         查询用户列表
