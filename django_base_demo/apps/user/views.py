@@ -94,6 +94,28 @@ class UserViewSet(BaseViewSet):
         :return:
         """
 
+        # 获取参数
+        name = request.data.get('name')  # 姓名
+        gender = request.data.get('gender')  # 性别
+        age = request.data.get('age')  # 年龄
+        remark = request.data.get('remark')  # 备注，描述信息
+
+        if not name:
+            return Response.warning(message='姓名不能为空')
+
+        if not gender:
+            return Response.warning(message='性别不能为空')
+
+        # 新建
+        User.objects.create(
+            name=name,
+            gender=gender,
+            age=age,
+            remark=remark
+        )
+
+        return Response.success(message='保存成功')
+
     def retrieve(self, request, *args, **kwargs):
         """
         查询单个用户信息
@@ -103,6 +125,19 @@ class UserViewSet(BaseViewSet):
         :param kwargs:
         :return:
         """
+
+        # 获取参数
+        id = kwargs.get('pk')
+
+        # 查询用户
+        user = User.objects.filter(id=id, is_deleted=False).first()
+
+        if not user:
+            return Response.warning(message='用户不存在')
+
+        data = self.get_serializer(user).data
+
+        return Response.success(data, message='请求成功')
 
     def update(self, request, *args, **kwargs):
         """
@@ -114,6 +149,34 @@ class UserViewSet(BaseViewSet):
         :return:
         """
 
+        # 获取参数
+        id = kwargs.get('pk')  # 用户Id
+        name = request.data.get('name')  # 姓名
+        gender = request.data.get('gender')  # 性别
+        age = request.data.get('age')  # 年龄
+        remark = request.data.get('remark')  # 备注，描述信息
+
+        if not name:
+            return Response.warning(message='姓名不能为空')
+
+        if not gender:
+            return Response.warning(message='性别不能为空')
+
+        # 查询用户
+        user = User.objects.filter(id=id, is_deleted=False).first()
+
+        if not user:
+            return Response.warning(message='用户不存在')
+
+        # 更新
+        user.name = name
+        user.gender = gender
+        user.age = age
+        user.remark = remark
+        user.save()
+
+        return Response.success(message='保存成功')
+
     def destroy(self, request, *args, **kwargs):
         """
         删除指定用户
@@ -123,3 +186,21 @@ class UserViewSet(BaseViewSet):
         :param kwargs:
         :return:
         """
+
+        # 获取参数
+        id = kwargs.get('pk')
+
+        if not id:
+            return Response.warning(message='请选择要删除的用户')
+
+        # 查询用户
+        user = User.objects.filter(id=id, is_deleted=False).first()
+
+        if not user:
+            return Response.warning(message='用户不存在')
+
+        # 更新删除标记
+        user.is_deleted = True
+        user.save()
+
+        return Response.success(message='删除成功')
